@@ -13,9 +13,5 @@ app.use((0, cors_1.default)());
 app.use('/api/products', product_route_1.productRouts);
 app.use('/', (req, res) => {
     res.send('welcome to e-commerce server');
-    // res.status(200).json({
-    //     success: true,
-    //     message: 'Welcome to e-commerce server'
-    // })
 });
 exports.default = app;
