@@ -28,6 +28,6 @@ const getAllOrder = async (req: Request, res: Response) => {
 };
 
 export const orderControllers = {
-    createNewOrder,
-    getAllOrder
-}
+  createNewOrder,
+  getAllOrder,
+};

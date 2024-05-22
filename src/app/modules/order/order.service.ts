@@ -1,5 +1,5 @@
-import { User } from "./order.interface";
-import UserModel from "./order.model";
+import { User } from './order.interface';
+import UserModel from './order.model';
 
 const createNewOrderDB = async (user: User) => {
   const result = await UserModel.create(user);
@@ -11,6 +11,6 @@ const getAllUserOrderDB = async () => {
 };
 
 export const orderService = {
- createNewOrderDB,
- getAllUserOrderDB
+  createNewOrderDB,
+  getAllUserOrderDB,
 };
