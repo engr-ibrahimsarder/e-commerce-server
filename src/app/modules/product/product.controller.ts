@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { productService } from './product.service';
 import productValidationSchema from './prodcut.validation';
-type ProductQuery = {
-  name: string;
-}
+// type ProductQuery = {
+//   name: string;
+// }
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
@@ -24,8 +24,8 @@ const createProduct = async (req: Request, res: Response) => {
 };
 const getAllProduct = async (req: Request, res: Response) => {
   try {
-    const data: ProductQuery = req.query as ProductQuery;
-    const result = await productService.getAllProductDB(data);  
+    // const data: ProductQuery = req.query as ProductQuery;
+    const result = await productService.getAllProductDB();  
     res.status(200).json({
       success: true,
       message: 'Products fetched successfully!',

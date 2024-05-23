@@ -1,19 +1,19 @@
 import { Product } from './product.interface';
 import ProductModel from './product.model';
-type ProductQuery = {
-  name: string;
-}
+// type ProductQuery = {
+//   name: string;
+// }
 
 const createProductDB = async (product: Product) => {
   const result = await ProductModel.create(product);
   return result;
 };
-const getAllProductDB = async (query : ProductQuery) => {
-  const dbQuery: any = {}
-  if (query.name) {
-    dbQuery.name = { $regex: query.name, $options: 'a' };
-  }
-  const result = await ProductModel.find(dbQuery);
+const getAllProductDB = async () => {
+  // const dbQuery:any = {}
+  // if (query.name) {
+  //   dbQuery.name = { $regex: query.name, $options: 'a' };
+  // }
+  const result = await ProductModel.find();
   return result;
 };
 const getSingleProductDB = async (id : string) => {
