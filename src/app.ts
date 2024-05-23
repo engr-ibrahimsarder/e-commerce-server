@@ -11,7 +11,18 @@ app.use(cors());
 app.use('/api/products', productRouts);
 app.use('/api/orders', orderRoutes);
 app.use('/', (req: Request, res: Response) => {
-  res.send('welcome to e-commerce server');
+  try{
+  res.status(200).json({
+    success: true,
+    message: 'welcome to e-commerce server',
+  });
+} catch (err) {
+  res.status(500).json({
+    success: false,
+    message: 'Route not found',
+    error: err,
+  });
+}
 });
 
 export default app;
