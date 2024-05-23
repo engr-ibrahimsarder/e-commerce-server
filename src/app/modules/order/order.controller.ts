@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { orderService } from './order.service';
-// type ProductQuery = {
-//   email: string;
-// }
+type ProductQuery = {
+  email: string;
+}
 const createNewOrder = async (req: Request, res: Response) => {
   try {
     const user = req.body;
@@ -18,8 +18,8 @@ const createNewOrder = async (req: Request, res: Response) => {
 };
 const getAllOrder = async (req: Request, res: Response) => {
   try {
-    // const data: ProductQuery = req.query as ProductQuery;
-    const result = await orderService.getAllUserOrderDB();
+    const data: ProductQuery = req.query as ProductQuery;
+    const result = await orderService.getAllUserOrderDB(data);
     res.status(200).json({
       success: true,
       message: 'Order featch successfully!',
