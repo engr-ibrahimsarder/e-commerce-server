@@ -3,11 +3,11 @@ import { productService } from './product.service';
 import productValidationSchema from './prodcut.validation';
 type ProductQuery = {
   name: string;
-}
+};
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
-    const zodParseProduct = productValidationSchema.parse(product)
+    const zodParseProduct = productValidationSchema.parse(product);
     const result = await productService.createProductDB(zodParseProduct);
     res.status(200).json({
       success: true,
@@ -18,14 +18,14 @@ const createProduct = async (req: Request, res: Response) => {
     res.status(500).json({
       success: false,
       message: 'Products fetch fail',
-      error
+      error,
     });
   }
 };
 const getAllProduct = async (req: Request, res: Response) => {
   try {
     const data: ProductQuery = req.query as ProductQuery;
-    const result = await productService.getAllProductDB(data);  
+    const result = await productService.getAllProductDB(data);
     res.status(200).json({
       success: true,
       message: 'Products fetched successfully!',
@@ -43,6 +43,12 @@ const getSingleProduct = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const result = await productService.getSingleProductDB(id);
+    if (result == null) {
+      res.status(500).json({
+        success: false,
+        message: 'Products not found',
+      });
+    }
     res.status(200).json({
       success: true,
       message: 'Product fetched successfully!',
@@ -60,7 +66,7 @@ const updateProduct = async (req: Request, res: Response) => {
   try {
     const id = req.params.productId;
     const data = req.body;
-    const result = await productService.updateProductDB(id, data);  
+    const result = await productService.updateProductDB(id, data);
     res.status(200).json({
       success: true,
       message: 'Product updated successfully!',

@@ -3,13 +3,13 @@ import { z } from 'zod';
 // Variant schema
 const variantValidationSchema = z.object({
   type: z.string(),
-  value: z.string()
+  value: z.string(),
 });
 
 // Inventory schema
 const inventoryValidationSchema = z.object({
   quantity: z.number(),
-  inStock: z.boolean()
+  inStock: z.boolean(),
 });
 
 // Product schema
@@ -21,7 +21,7 @@ const productValidationSchema = z.object({
   tags: z.array(z.string().trim()),
   variants: z.array(variantValidationSchema),
   inventory: inventoryValidationSchema,
-  isDeleted: z.boolean()
+  isDeleted: z.boolean(),
 });
 
 export default productValidationSchema;

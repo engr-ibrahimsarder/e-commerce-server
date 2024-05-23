@@ -13,24 +13,24 @@ const inventorySchema = new Schema<Inventory>({
 });
 // product main schema
 const productSchema = new Schema<Product>({
-  name: { type: String, required: true, maxlength: 20 , trim: true},
-  description: { type: String, required: true, trim: true},
-  price: { type: Number, required: true, minlength: 1, trim: true},
-  category: { type: String, required: true, trim: true},
+  name: { type: String, required: true, maxlength: 20, trim: true },
+  description: { type: String, required: true, trim: true },
+  price: { type: Number, required: true, minlength: 1, trim: true },
+  category: { type: String, required: true, trim: true },
   tags: { type: [String], required: true, trim: true },
   variants: { type: [variantSchema], required: true, trim: true },
   inventory: { type: inventorySchema, required: true, trim: true },
-  isDeleted: {type: Boolean, default: false}
+  isDeleted: { type: Boolean, default: false },
 });
 
 // middleware
-productSchema.pre('find', function(next) {
-  this.find({isDeleted: {$ne: true}})
-  next()
+productSchema.pre('find', function (next) {
+  this.find({ isDeleted: { $ne: true } });
+  next();
 });
-productSchema.pre('findOne', function(next) {
-  this.find({isDeleted: {$ne: true}})
-  next()
+productSchema.pre('findOne', function (next) {
+  this.find({ isDeleted: { $ne: true } });
+  next();
 });
 
 const ProductModel = model<Product>('Product', productSchema);
