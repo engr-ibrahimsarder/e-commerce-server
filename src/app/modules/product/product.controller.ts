@@ -10,14 +10,14 @@ const createProduct = async (req: Request, res: Response) => {
     const zodParseProduct = productValidationSchema.parse(product);
     const result = await productService.createProductDB(zodParseProduct);
     res.status(200).json({
-      success: true,
+      success: true, 
       message: 'Product created successfully!',
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
-      message: 'Products fetch fail',
+      message: 'Products create fail',
       error,
     });
   }
@@ -32,7 +32,7 @@ const getAllProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
       message: 'Products fetch fail',
       error: err,
@@ -44,7 +44,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
     const id = req.params.productId;
     const result = await productService.getSingleProductDB(id);
     if (result == null) {
-      res.status(500).json({
+      res.status(404).json({
         success: false,
         message: 'Products not found',
       });
@@ -55,7 +55,7 @@ const getSingleProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
       message: 'Products fetch fail',
       error: err,
@@ -73,9 +73,9 @@ const updateProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
-      message: 'Products fetch fail',
+      message: 'Product update fail',
       error: err,
     });
   }
@@ -90,7 +90,7 @@ const deleteProduct = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    res.status(500).json({
+    res.status(404).json({
       success: false,
       message: 'Products delete fail',
       error: err,

@@ -6,6 +6,10 @@ type ProductQuery = {
 
 const createProductDB = async (product: Product) => {
   const result = await ProductModel.create(product);
+  if (typeof result.isDeleted === 'undefined') {
+    console.log(result.isDeleted)
+    result.isDeleted = false; 
+  }
   return result;
 };
 const getAllProductDB = async (query: ProductQuery) => {
