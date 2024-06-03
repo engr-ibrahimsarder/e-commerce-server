@@ -7,6 +7,9 @@ type ProductQuery = {
 const createProduct = async (req: Request, res: Response) => {
   try {
     const product = req.body;
+    if (typeof product.isDeleted === 'undefined') {
+      product.isDeleted = false; 
+    }
     const zodParseProduct = productValidationSchema.parse(product);
     const result = await productService.createProductDB(zodParseProduct);
     res.status(200).json({
